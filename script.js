@@ -10,17 +10,8 @@ async function loadJSON(file) {
     }
 }
 
-// Function to save JSON data to file (using localStorage as fallback for demo)
+// Function to save JSON data to localStorage
 function saveJSON(file, data) {
-    // POST to server to save to file
-    fetch('/save', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ file, data })
-    }).catch(e => console.log('Save to server failed:', e));
-    // Also save to localStorage for demo
     const key = file.replace('/', '_').replace('.json', '');
     localStorage.setItem(key, JSON.stringify(data));
 }
