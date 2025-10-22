@@ -1,0 +1,511 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+    text-align: center;
+    background-image: url('image/wp7217218.gif'); /* Indian railway train image */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent overlay for readability */
+    z-index: -1;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+.sidebar-open .page {
+    margin-left: 330px;
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: transparent;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.modal-content button {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.modal-content button:hover {
+    background-color: #0056b3;
+}
+
+.modal-content #closeDownloadOptions {
+    background-color: #6c757d;
+}
+
+.modal-content #closeDownloadOptions:hover {
+    background-color: #545b62;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.logout-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(45deg, #dc3545, #c82333);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(220,53,69,0.3);
+}
+
+.logout-btn:hover {
+    background: linear-gradient(45deg, #c82333, #a02622);
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(220,53,69,0.4);
+}
+
+h1 {
+    color: #333;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    background: linear-gradient(45deg, #007bff, #28a745);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+#welcomeMessage {
+    font-size: 2em;
+    font-weight: bold;
+    color: #ff6b35;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    margin-bottom: 20px;
+    background: linear-gradient(45deg, #ff6b35, #f7931e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+#hamburger {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 30px;
+    cursor: pointer;
+    color: #007bff;
+    z-index: 101;
+    display: none;
+}
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 280px;
+    background:transparent 50%;
+    /*background: linear-gradient(135deg, #2c3e50, #34495e);*/
+    color: white;
+    padding: 25px;
+    box-shadow: 4px 0 15px rgba(0,0,0,0.3);
+    z-index: 100;
+    display: none;
+    border-right: 3px solid #3498db;
+    overflow-y: auto;
+}
+
+.sidebar h3 {
+    margin-top: 0;
+    font-size: 1.8em;
+    text-align: center;
+    margin-bottom: 40px;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+
+
+.sidebar-btn {
+    display: block;
+    width: 100%;
+    padding: 18px 20px;
+    margin-bottom: 15px;
+    background: linear-gradient(45deg, rgba(52, 152, 219, 0.8), rgba(41, 128, 185, 0.8));
+    color: white;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+}
+
+.sidebar-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+
+.sidebar-btn:hover {
+    background: linear-gradient(45deg, rgba(41, 128, 185, 0.9), rgba(52, 152, 219, 0.9));
+    transform: translateX(10px);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+}
+
+.sidebar-btn:hover::before {
+    left: 100%;
+}
+
+.main-content {
+    margin-left: 330px;
+    padding: 20px;
+}
+
+form {
+    max-width: 450px;
+    max-height: 700px;
+    margin: 0 auto;
+    padding: 30px;
+    /*background: linear-gradient(135deg, #ffffff, #f8f9fa);*/
+    background: transparent 10%;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    border: 1px solid #e9ecef;
+    position: relative;
+    overflow: hidden;
+}
+
+form::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #007bff, #28a745);
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #495057;
+    position: relative;
+}
+
+label::after {
+    content: " *";
+    color: #dc3545;
+}
+
+input {
+    width: 100%;
+    padding: 12px 1px;
+    margin-bottom: 20px;
+    border: 2px solid #ced4da;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background-color: #fff;
+}
+
+input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 10px rgba(0,123,255,0.3);
+    outline: none;
+}
+
+input:hover {
+    border-color: #28a745;
+}
+
+
+button {
+    padding: 12px 15px;
+    background: linear-gradient(45deg, #007bff, #0056b3);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 10px 5px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,123,255,0.3);
+}
+
+button:hover {
+    background: linear-gradient(45deg, #0056b3, #004085);
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0,123,255,0.4);
+}
+
+#scripts {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.script {
+    margin-bottom: 20px;
+}
+
+.script h2 {
+    color: #007bff;
+}
+
+.script p {
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.table-container {
+    overflow-x: auto;
+    margin: 20px auto;
+    max-width: 100%;
+    width: 100%;
+}
+
+.sidebar-open .table-container {
+    max-width: calc(100vw - 320px);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 2px solid #007bff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,123,255,0.2);
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 2px;
+    text-align: left;
+    white-space: normal;
+    overflow-wrap: break-word;
+    font-size: 15px;
+}
+
+@media (max-width: 768px) {
+    .table-container {
+        max-width: 100%;
+        margin: 10px;
+    }
+
+    .sidebar-open .table-container {
+        max-width: calc(100vw - 20px);
+    }
+
+    table {
+        min-width: 100%;
+        font-size: 12px;
+    }
+
+    th, td {
+        padding: 2px;
+        font-size: 12px;
+    }
+}
+
+th {
+    background: linear-gradient(45deg, #007bff, #0056b3);
+    color: white;
+    font-weight: bold;
+    padding: 12px 8px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 14px;
+    border-bottom: 2px solid #0056b3;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+tr:hover {
+    background-color: #e9ecef;
+}
+
+#currentDateTime {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(0, 123, 255, 0.9);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    z-index: 10;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+@media (max-width: 768px) {
+    #currentDateTime {
+        font-size: 12px;
+        padding: 6px 10px;
+        top: 5px;
+        right: 5px;
+    }
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 123, 255, 0.9);
+    color: white;
+    text-align: center;
+    padding: 1px;
+    font-size: 15px;
+    z-index: 10;
+}
+
+.sidebar-open footer {
+    width: calc(100% - 330px);
+    left: 330px;
+}
+
+/* File upload styles */
+.file-upload-container {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 20px;
+    margin: 0 auto;
+    justify-content: center;
+    max-width: 600px;
+}
+
+.file-upload-btn {
+    background: linear-gradient(45deg, #007bff, #0056b3);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,123,255,0.3);
+    order: 1;
+}
+
+.file-upload-btn:hover {
+    background: linear-gradient(45deg, #0056b3, #004085);
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0,123,255,0.4);
+}
+
+.file-name {
+    font-size: 16px;
+    position: relative;
+    color: #495057;
+    background-color: #fff;
+    border: 2px solid #ced4da;
+    border-radius: 8px;
+    padding: 12px 15px;
+    flex-grow: 1;
+    max-width: 200px;
+    transition: all 0.3s ease;
+    order: 2
+}
+
+.file-name:hover {
+    border-color: #28a745;
+}
+
+.upload-excel-btn {
+    background: linear-gradient(45deg, #28a745, #20c997);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(40,167,69,0.3);
+    order: 3;
+}
+
+.upload-excel-btn:hover {
+    background: linear-gradient(45deg, #20c997, #17a2b8);
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(40,167,69,0.4);
+}

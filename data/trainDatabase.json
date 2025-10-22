@@ -1,0 +1,18 @@
+[
+  {
+    "number": "11019",
+    "name": "CHATRAPATI SHIVAJI MAHARAJ TERMINIUS - BHUBANESWAR NEW EXPRESS",
+    "arrival": "00:02",
+    "departure": "00:04",
+    "updn": "DN",
+    "station": "Central Station"
+  },
+  {
+    "number": "11020",
+    "name": "CHATRAPATI SHIVAJI MAHARAJ TERMINIUS - BHUBANESWAR NEW EXPRESS",
+    "arrival": "14:48",
+    "departure": "14:50",
+    "updn": "UP",
+    "station": "Central Station"
+  }
+]

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train Announcement</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="hamburger">☰</div>
+    <div class="sidebar">
+        <h3 id="sidebarHeader">Menu</h3>
+        <button id="announceBtn" class="sidebar-btn">Announce Train</button>
+        <button id="trainInfoBtn" class="sidebar-btn">Train Time Table Information</button>
+        <button id="activityBtn" class="sidebar-btn">Train Station Status</button>
+        <button id="createUserBtn" class="sidebar-btn">Create User</button>
+        <button id="adminMessageBtn" class="sidebar-btn">Admin Message</button>
+        <button id="downloadBtn" class="sidebar-btn">Download Database</button>
+        <button id="downloadTrainBtn" class="sidebar-btn sub-btn" style="display:none;">Download Train Database</button>
+        <button id="downloadActivitiesBtn" class="sidebar-btn sub-btn" style="display:none;">Download Activities</button>
+        <button id="downloadUsersBtn" class="sidebar-btn sub-btn" style="display:none;">Download Users</button>
+        <button id="logoutButton" class="sidebar-btn">Logout</button>
+
+    </div>
+    
+    <div id="page0" class="page active">
+        <h1>Welcome to Railway Station Announcement</h1>
+        <p id="adminMessageDisplay" style="display:none;"></p>
+        <h2>Login</h2>
+        <form id="loginForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username" required>
+            <br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" required>
+            <br>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <div id="page1" class="page">
+        <h2 id="welcomeMessage"></h2>
+        <h1>Train Announcement</h1>
+        <form id="announcementForm">
+            <label for="trainNumber">Train Number:</label>
+            <input type="number" id="trainNumber" required>
+            <br>
+            <label for="platformNumber">Platform Number:</label>
+            <input type="number" id="platformNumber" required>
+            <br>
+            <button type="submit">Announce</button>
+        </form>
+    </div>
+    
+    <div id="page2" class="page">
+        <h1>Announcement Scripts</h1>
+        <div id="scripts">
+            <div class="script">
+                <h2>Odia (ଓଡ଼ିଆ)</h2>
+                <p id="odiaScript"></p>
+            </div>
+            <div class="script">
+                <h2>Hindi (हिन्दी)</h2>
+                <p id="hindiScript"></p>
+            </div>
+            <div class="script">
+                <h2>English</h2>
+                <p id="englishScript"></p>
+            </div>
+            
+        </div>
+        <button id="backButton">Back</button>
+    </div>
+    
+    <div id="page3" class="page">
+        <h1>Train Timing Table Information</h1>
+        <div class="table-container">
+            <table id="trainTimeTable">
+                <thead>
+                    <tr>
+                        <th>Sl No</th>
+                        <th>Train Number</th>
+                        <th>Train Name</th>
+                        <th>Train arrival</th>
+                        <th>Train departure</th>
+                        <th>UP/DN</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="trainTimeTableBody">
+                    <!-- Rows will be populated by JS -->
+                </tbody>
+            </table>
+        </div>
+        <h2>Add New Train</h2>
+        <form id="addTrainForm">
+            <label for="newTrainNumber">Train Number:</label>
+            <input type="number" id="newTrainNumber" required>
+            <br>
+            <label for="newTrainName">Train Name:</label>
+            <input type="text" id="newTrainName" required>
+            <br>
+            <label for="newTrainArrival">Train arrival:</label>
+            <input type="time" id="newTrainArrival" required >
+            <br>
+            <label for="newTrainDeparture">Train departure:</label>
+            <input type="time" id="newTrainDeparture" required >
+            <br>
+            <label for="newTrainupdn">UP/DN:</label>
+            <input type="text" id="newTrainupdn" required >
+            <br>
+            <button type="submit">Add Train</button>
+        </form>
+        <h2>Upload Trains from Excel</h2>
+        <p>Download a <a href="#" id="downloadSampleBtn">sample Excel file</a> to see the required format.</p>
+        <div class="file-upload-container">
+            <label for="excelFileInput" class="file-upload-btn">Choose Excel File</label>
+            <input type="file" id="excelFileInput" accept=".xlsx,.xls" style="display: none;">
+            <span id="fileNameDisplay" class="file-name">No file chosen</span>
+            <button id="uploadExcelBtn" class="upload-excel-btn">Upload Excel</button>
+        </div>
+        <br>
+        <button id="backToMainButton">Back</button>
+    </div>
+
+    <div id="page4" class="page">
+
+        <h1 id="activityHeader"></h1>
+        <div class="table-container">
+            <table id="activityTable">
+                <thead>
+                    <tr>
+                        <th>Sl No</th>
+                        <th>Time of Announcement</th>
+                        <th>Train No</th>
+                        <th>Train Name</th>
+                        <th>Platform Number</th>
+                        <th>Coming Status</th>
+                    </tr>
+                </thead>
+                <tbody id="activityTableBody">
+                    <!-- Rows will be populated by JS -->
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <button id="backToMainFromActivityButton">Back</button>
+    </div>
+
+    <div id="page5" class="page">
+        <h1>User Management</h1>
+        <div class="table-container">
+            <table id="userTable">
+                <thead>
+                    <tr>
+                        <th>Sl No</th>
+                        <th>Username</th>
+                        <th>Password</th>
+                        <th>Station Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="userTableBody">
+                    <!-- Rows will be populated by JS -->
+                </tbody>
+            </table>
+        </div>
+        <h2>Add New User</h2>
+        <form id="addUserForm">
+            <label for="newUsername">Username:</label>
+            <input type="text" id="newUsername" required>
+            <br>
+            <label for="newUserPassword">Password:</label>
+            <input type="password" id="newUserPassword" required>
+            <br>
+            <label for="newStationName">Station Name:</label>
+            <input type="text" id="newStationName" required>
+            <br>
+            <button type="submit">Add User</button>
+        </form>
+        <br>
+        <button id="backToMainFromUserButton">Back</button>
+    </div>
+
+    <div id="page6" class="page">
+        <h1>Admin Message</h1>
+        <form id="adminMessageForm">
+            <label for="newAdminMessage">Enter Admin Message:</label>
+            <textarea id="newAdminMessage" rows="4" cols="50" required></textarea>
+            <br>
+            <button type="submit">Send Message</button>
+        </form>
+        <br>
+        <button id="backToMainFromAdminMessageButton">Back</button>
+    </div>
+    <div id="currentDateTime"></div>
+    <div id="downloadOptions" class="modal">
+        <div class="modal-content">
+            <h3>Select Database to Download</h3>
+            <button id="downloadTrainBtn">Download Train Database</button>
+            <button id="downloadActivitiesBtn">Download Activities</button>
+            <button id="downloadUsersBtn">Download Users</button>
+            <button id="closeDownloadOptions">Cancel</button>
+        </div>
+    </div>
+    <div id="userSelectionModal" class="modal">
+        <div class="modal-content">
+            <h3>Select User to Download For</h3>
+            <div id="userList"></div>
+            <button id="closeUserSelection">Cancel</button>
+        </div>
+    </div>
+    <div id="excelUploadModal" class="modal">
+        <div class="modal-content">
+            <h3>Upload Excel File</h3>
+            <div id="excelPreview"></div>
+            <button id="confirmUploadBtn">OK</button>
+            <button id="cancelUploadBtn">Cancel</button>
+        </div>
+    </div>
+    <footer>
+        <p>All rights reserved by @ Mr Chocolate . This is not provided by Indian Railway.</p>
+
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

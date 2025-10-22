@@ -1,0 +1,17 @@
+[
+  {
+    "username": "admin",
+    "password": "admin",
+    "stationName": "CENTRAL"
+  },
+  {
+    "username": "mcs",
+    "password": "mcs",
+    "stationName": "MANCHESWAR"
+  },
+  {
+    "username": "bnbh",
+    "password": "bnbh",
+    "stationName": "BANIBIHAR"
+  }
+]
